@@ -102,3 +102,16 @@ int main()
         cout<<'\n';
     }
 }
+/*
+5
+Sabau Catalin
+7 8 6 7
+Mora Radu
+10 9 9 9
+Harangus Dan
+10 10 10 10
+Popescu Sergiu
+2 3 6 2
+Chender Tudor
+4 1 7 4
+*/
