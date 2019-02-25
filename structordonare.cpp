@@ -1,3 +1,4 @@
+/*#include <iostream>
 #include <fstream>
 #include <cstring>
 
@@ -16,12 +17,12 @@ struct elev
 int main()
 {
     int n,i,j;
-    float aux1;
-    char aux2[50];
+    elev aux;
     fin>>n;
     for(i=1; i<=n; i++)
     {
-        fin.get(e[i].nume,50);
+        fin.get();
+        fin.getline(e[i].nume,50);
         fin>>e[i].nota1;
         fin>>e[i].nota2;
         fin>>e[i].nota3;
@@ -30,17 +31,13 @@ int main()
     }
     for(i=1; i<=n; i++)
     {
-        for(j=i+1; j<=n;)
+        for(j=i+1; j<=n; j++)
         {
             if(e[i].media<e[j].media)
             {
-                aux1=e[i].media;
-                e[i].media=e[j].media;
-                e[j].media=aux1;
-
-                strcpy(aux2,e[i].nume);
-                strcpy(e[i].nume,e[j].nume);
-                strcpy(e[j].nume,aux2);
+               aux=e[i];
+               e[i]=e[j];
+               e[j]=aux;
             }
         }
     }
@@ -48,35 +45,33 @@ int main()
     fout<<'\n';
     for(i=1; i<=n; i++)
     {
-        fout<<e[i].nume;
+        fout<<e[i].nume<<" "<<e[i].media;
         fout<<'\n';
     }
     fin.close();
     fout.close();
     return 0;
-}
-/*#include <iostream>
+}*/
+#include <iostream>
 #include <cstring>
 using namespace std;
 struct elev
 {
-    char numeprenume[60];
-    int nota1,nota2,nota3,teza;
-    float media;
+    char nume[60];
+    double nota1,nota2,nota3,teza,media;
 };
 int main()
 {
     int n,i,j;
-    float med[50],x;
+    elev aux;
     elev e[50];
-    char aux[60];
     cout<<"Introduceti numarul de elevi : ";
     cin>>n;
-    cin.get();
     for (i=1; i<=n; i++)
     {
-        cout<<"Introduceti numele elevului "<<i<<" ";
-        cin.get(e[i].numeprenume,50);
+        cin.get();
+        cout<<"Introduceti numele elevului "<<i<<": ";
+        cin.getline(e[i].nume,50);
         cout<<"Introduceti nota 1 : ";
         cin>>e[i].nota1;
         cout<<"Introduceti nota 2 : ";
@@ -93,20 +88,17 @@ int main()
         {
             if (e[i].media<e[j].media)
             {
-                x=e[i].media;
-                e[i].media=e[j].media;
-                e[j].media=x;
-
-                strcpy(aux,e[i].numeprenume);
-                strcpy(e[i].numeprenume,e[j].numeprenume);
-                strcpy(e[j].numeprenume,aux);
+                aux=e[i];
+                e[i]=e[j];
+                e[j]=aux;
             }
         }
     }
     cout<<"Elevii ordonati descrescatori in functie de medie sunt:";
-    cout<<endl;
+    cout<<'\n';
     for (i=1; i<=n; i++)
     {
-        cout<<e[i].numeprenume<<endl;
+        cout<<e[i].nume<<" "<<e[i].nota1<<" "<<e[i].nota2<<" "<<e[i].nota3<<" "<<e[i].teza<<" "<<e[i].media;
+        cout<<'\n';
     }
-}*/
+}
